@@ -51,7 +51,7 @@ def init_train_dataset(data_root):
     train_gt_path = os.path.join(data_root, 'train_gt')
     train_mask_path = os.path.join(data_root, 'train_mask')
     train_images = [img_read(os.path.join(train_path, name)) for name in os.listdir(train_path)]
-    train_masks = [img_read(os.path.join(train_path, name)) for name in os.listdir(train_mask_path)]
+    train_masks = [img_read(os.path.join(train_mask_path, name)) for name in os.listdir(train_mask_path)]
     train_gts = [os.path.join(data_root,name) for name in os.listdir(train_gt_path)]
     for image,mask,gt_path in zip(train_images,train_masks,train_gts):
         train_dataset.append([image,mask,gt_path])
@@ -103,7 +103,13 @@ def Diverse_module_2(image,mask,UAU,now_ti,gap):
 #                                   retain_graph=False, create_graph=False)[0]
 #     return db_single_loss.detach().cpu().item(), grad_db.detach().cpu()
 
-
+def get_pred_from_boxes(boxes):
+    res=[]
+    pred=boxes[0]['boundary_result']
+    for i in pred:
+        res.append([[int(i[0]),int(i[1])],[int(i[2]),int(i[3])],
+                    [int(i[4]),int(i[5])],[int(i[6]),int(i[7])]])
+    return np.array(res)
 
 
 

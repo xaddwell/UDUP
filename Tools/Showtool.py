@@ -3,9 +3,19 @@ from torch.autograd import Variable
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
+from Tools.ImageIO import img_tensortocv2
+
+def img_show3_t(img):
+    img=img_tensortocv2(img)
+    plt.imshow(img)
+    plt.show()
 
 def img_show3(img):
     plt.matshow(img)
+    plt.show()
+
+def img_show1_t(img):
+    plt.imshow(img.detach().cpu().squeeze())
     plt.show()
 
 def img_show1(img):
