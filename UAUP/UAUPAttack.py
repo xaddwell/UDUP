@@ -152,7 +152,11 @@ class RepeatAdvPatch_Attack():
                 h, w = x_d1.shape[2:]
                 DU = repeat_4D(patch=it_adv_patch, h_real=h, w_real=w)
                 merge_x = DU * m + x_d1 * (1 - m)
-                x_d2, m_d2, DU_d2 = Diverse_module_2(image=merge_x, mask=m_gt_d1, UAU=DU,
+                # x_d2, m_d2, DU_d2 = Diverse_module_2(image=merge_x, mask=m_gt_d1, UAU=DU,
+                #                                              now_ti=t, gap=self.gap)
+
+                # 改成 x_d1 最大化中间层损失
+                x_d2, m_d2, DU_d2 = Diverse_module_2(image=merge_x, mask=m_gt_d1, UAU=x_d1,
                                                              now_ti=t, gap=self.gap)
 
                 boxes, res = MMOCR(det='DB_r18', recog=None).single_grad_inference(x_d2, feaName=self.midLayer)
