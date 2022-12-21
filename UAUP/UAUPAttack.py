@@ -35,9 +35,9 @@ class RepeatAdvPatch_Attack():
                  feamapLoss=False):
 
         # load DBnet
-        # self.midLayer = ["neck.lateral_convs.0", "neck.smooth_convs.0",
-        #                  "backbone.layer2.convs.2", "backbone.layer4.convs.2","bbox_head.binarize.7"]
-        self.midLayer = ["bbox_head.binarize.7"]
+        self.midLayer = ["neck.lateral_convs.0", "neck.smooth_convs.0",
+                         "backbone.layer2.convs.2", "backbone.layer4.convs.2","bbox_head.binarize.7"]
+        # self.midLayer = ["bbox_head.binarize.7"]
         # hyper-parameters
         self.eps, self.alpha, self.decay = eps, alpha, decay
 
@@ -273,9 +273,9 @@ class RepeatAdvPatch_Attack():
 import os
 if __name__ == '__main__':
     RAT = RepeatAdvPatch_Attack(data_root=os.path.join(os.path.abspath('.')[:-4],"AllData"),
-                                savedir=os.path.join(os.path.abspath('.')[:-4],'result_save/140_140'), log_name='140_140.log',
+                                savedir=os.path.join(os.path.abspath('.')[:-4],'result_save/150_150'), log_name='150_150.log',
                                 alpha=5 / 255, batch_size=20, gap=50, T=501,
-                                lambdaw=0, eps=60 / 255, decay=0.2,
+                                lambdaw=0.05, eps=60 / 255, decay=0.2,
                                 adv_patch_size=(1, 3, 130, 130),
                                 feamapLoss=False)
     RAT.train()
