@@ -1,2 +1,2 @@
-# UDUP
-UDUP: Protect Your Text Copyright From Optical Character Recognition with Universal Defensive Underpainting Patch
+# UDUP by DJC and CJH
+Universal Defensive Underpainting Patch: Making Your Text Invisible to Optical Character Recognition (MM 23)
